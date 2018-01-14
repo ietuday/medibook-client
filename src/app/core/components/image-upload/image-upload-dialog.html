@@ -1,0 +1,26 @@
+<h3 md-dialog-title>
+  Upload your profile picture</h3>
+<div fxLayoutAlign="center center">
+  <input #selectedPicture [hidden]="true" id="custom-input" type="file" name="file" (change)="fileChangeListener($event)" accept=".jpeg, .gif,.jpg,.png,.bmp">
+</div><br><br>
+
+<div fxLayout="column">
+  <div fxLayoutAlign="center center" style="height:80%">
+    <div class="imageUploadedGap">&nbsp;</div>
+    <div style="min-height: 305px">
+      <img-cropper [hidden]="showCrop" #cropper [image]="imageData" [settings]="cropperSettings"></img-cropper>
+    </div>
+    <img *ngIf="showCrop" [src]="imageData.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+  </div>
+  <br>
+  <div fxLayoutAlign="start end" fxLayoutGap="8px">
+    <button md-raised-button color="primary" [disabled]="!imageData.image" (click)="showCrop = true">CROP</button>
+    <button md-raised-button (click)="showCrop = false">UNDO CROP</button>
+  </div>
+  <br><br>
+  <div fxLayoutAlign="end end" style="margin-top: 48px;height: 100%" fxLayoutGap="8px">
+    <button md-raised-button color="primary" (click)="onSelectFile()">BROWSE</button>
+    <button md-raised-button color="primary" (click)="onUploadImage()" [disabled]="!showCrop">UPLOAD</button>
+    <button md-raised-button (click)="dialogRef.close()">CANCEL</button>
+  </div>
+</div>

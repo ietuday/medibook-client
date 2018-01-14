@@ -1,0 +1,40 @@
+<medi-loading-bar></medi-loading-bar>
+<div id="layout-wrapper" fxLayout="column">
+  <mat-toolbar color="primary" class="main-toolbar mat-elevation-z4">
+
+    <button (click)="sidenav.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="brand-name">Fizzy</span>
+
+    <input class="search-text" placeholder="Search..." type="text">
+    <span fxFlex></span>
+    <button mat-icon-button routerLink="/login">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container [class.mat-sidenav-close]="!sidenav.opened" fxFlex>
+
+    <mat-sidenav class="sidenav" mode="side" opened="true" align="start" msIconSidenav #sidenav>
+      <medi-sidenav></medi-sidenav>
+    </mat-sidenav>
+
+    <div class="main-container" #scrollContainer scrollbar>
+      <div class="container-header">
+        <div class="title">{{currentBreadcrumb?.title}}</div>
+        <div class="sub-title" fxLayoutAlign="start center">
+          <ng-container *ngFor="let link of currentBreadcrumb?.links; let i = index; ">
+            <span *ngIf="isLastLink(i)">{{link.title}}</span>
+            <a *ngIf="!isLastLink(i)" [routerLink]="[link.routeLink]">{{link.title}}</a>
+            <mat-icon *ngIf="!isLastLink(i)"> keyboard_arrow_right</mat-icon>
+          </ng-container>
+        </div>
+      </div>
+      <div class="container-content mat-elevation-z2">
+        <router-outlet (activate)="onActivate($event, scrollContainer)"></router-outlet>
+      </div>
+    </div>
+
+  </mat-sidenav-container>
+</div>

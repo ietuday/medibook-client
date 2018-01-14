@@ -1,0 +1,9 @@
+<h2>Delete {{data.name}}</h2>
+<mat-dialog-content>
+  Are you sure you want to delete this {{data.name}}?
+  <br><br>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end">
+  <button mat-raised-button color="accent" (click)="dialogRef.close('Delete!')">Yes</button>
+  <button mat-button (click)="dialogRef.close('Cancel!')">No</button>
+</mat-dialog-actions>

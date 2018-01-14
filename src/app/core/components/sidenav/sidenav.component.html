@@ -1,0 +1,30 @@
+<div class="sidenav-container" fxLayout="column">
+  <div class="profile" fxLayoutAlign="center">
+    <img src="assets/medibook.png">
+  </div>
+
+  <div fxFlex>
+    <div *ngFor="let menu of menuItems">
+      <a (click)="showSubItems = !showSubItems" class="nav-item " fxLayout="row" fxLayoutAlign="start center" routerLinkActive="active"
+        [routerLink]="menu.routeLink">
+            <span  class="name">{{menu.title}}</span>
+            <span  fxFlex></span>
+            <mat-icon *ngIf="!menu.subItems"  class="icon mat-icon material-icons" role="img" aria-hidden="true">{{menu.icon}}</mat-icon>
+            <mat-icon *ngIf="menu.subItems"  class="icon mat-icon material-icons" role="img" aria-hidden="true">{{showSubItems?'keyboard_arrow_up':'keyboard_arrow_down'}}</mat-icon>
+            </a>
+          <div *ngIf="showSubItems" [@enterAnimation]>
+      <div   *ngFor="let subMenu of menu.subItems">
+        <a class="sub-nav-item " fxLayout="row" fxLayoutAlign="start center" routerLinkActive="active" [routerLink]="subMenu.routeLink">
+            <span  class="name">{{subMenu.title}}</span>
+            <span  fxFlex></span>
+            </a>
+      </div>
+          </div>
+    </div>
+
+  </div>
+  <div>
+<!-- [hidden]="!showSubItems" -->
+
+    <!-- <small>version 0.0.1</small> -->
+  </div>

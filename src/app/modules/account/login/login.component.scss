@@ -1,0 +1,48 @@
+@import './../../../core/styles/variables.scss';
+
+.container-content mat-elevation-z2{
+  background: #ffffff;
+}
+
+.container-header {
+  height: 350px;
+  // background: $primary-color;
+  color: white;
+  font-size: 21px;
+  padding: 53px 64px;
+  .title {
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+  .sub-title {
+    font-size: 16px;
+    span:hover {
+      color: #afaec1;
+      cursor: pointer;
+    }
+  }
+}
+
+.container-content {
+  min-height: 400px;
+  margin-top: -120px;
+  width: 350px;
+}
+
+.login-header {
+  padding: 17px;
+  color: #5f5d84;
+  font-weight: bold;
+  border-bottom: 1px solid #d4d3de;
+  font-size: 24px;
+  background: #7fffd4;
+}
+
+.login-content {
+  padding: 20px 50px;
+  background: white;
+}
+
+.main-container{
+  background-image: url(../../../../assets/background1.jpg);
+}

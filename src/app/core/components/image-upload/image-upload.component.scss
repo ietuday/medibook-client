@@ -1,0 +1,122 @@
+.result {
+    margin-top: -280px;
+    display: inline-block;
+    padding: 1px;
+    margin-left: 500px;
+}
+
+.result.rounded > img {
+    border-radius: 100px;
+}
+
+.pull-left {
+    // min-width: 400px;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+.file-upload {
+  height: 36px;
+  width: 100px;
+  position: relative;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50%;
+  border: 1px solid #FFF;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, #ff4081 50%, #FFFFFF 50%);
+  background-size: 100% 200%;
+  transition: all 1s;
+  color: #FFF;
+  font-size: 10px;
+}
+
+.del{
+    float:left;
+    width:100px;
+    
+}
+
+.del:hover{
+    background-position: 0 -100%;
+    color: #f44336;
+}
+
+.text {
+  font-size: 14px;
+}
+
+input[type='file'] {
+  height: 25px;
+  width: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.imageUploadedGap{
+    width: 10px;
+    height: 10px;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.h2{
+    text-align: center;
+}
+// .md-fab {
+//     float: right;
+//     right: 10px;
+//     bottom: -21px;
+// }
+
+/**************/
+.mat-dialog-container {
+    padding: 0px 24px !important;
+}
+
+
+.img-circle {
+    
+    width:10vw;
+    height:10vw;
+    border-radius: 10px;
+    border: solid 3px #fff;
+    box-shadow: 0 0 3px 2px #ccc;
+    // margin-left: 20%;
+    // font-size: 20;
+}
+
+.md-fab{
+    width:10vw;
+    position: absolute;
+    margin-left: 25px;
+    margin-top: -15px;
+}
+
+@media screen and (max-device-width: 1024px) and (max-device-height: 1024px){
+    .md-fab{
+        margin-left: 115%;
+        bottom: -105px !important;
+        font-size: 10px;
+    }
+
+    .img-circle {
+        width: 10vw;
+        height: 10vw;
+        border-radius: 10px;
+        border: solid 3px #fff;
+        box-shadow: 0 0 3px 2px #ccc;
+        margin-left: 20%;
+        margin-top: 70%;
+    }
+}
