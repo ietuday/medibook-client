@@ -7,10 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-// import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
-// import { ImageUploadComponent, ImageUploadDialog } from './components/image-upload/image-upload.component';
-// import { ImageCropperComponent } from 'ng2-img-cropper';
-// import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -39,18 +35,12 @@ import {
 
 
 @NgModule({
-  declarations: [
-    // DeleteDialogComponent,
-    // ImageUploadComponent,
-    // ImageUploadDialog,
-    // ImageCropperComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    // DropzoneModule.forRoot(),
     FlexLayoutModule,
     MatButtonModule,
     MatAutocompleteModule,
@@ -87,7 +77,6 @@ import {
     ReactiveFormsModule,
     HttpModule,
     FlexLayoutModule,
-    // DropzoneModule,
     MatButtonModule,
     MatAutocompleteModule,
     MatCheckboxModule,
@@ -114,18 +103,8 @@ import {
     MatChipsModule,
     MatSlideToggleModule,
     MatCardModule,
-
-    // DeleteDialogComponent,
-    // ImageUploadComponent,
-    // ImageUploadDialog,
-    // ImageCropperComponent,
-
   ],
-  entryComponents: [
-    // DeleteDialogComponent,
-    // ImageUploadComponent,
-    // ImageUploadDialog,
-    // ImageCropperComponent
-  ]
+
+  entryComponents: []
 })
 export class SharedModule { }

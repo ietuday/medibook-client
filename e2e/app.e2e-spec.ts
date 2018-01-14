@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('medi-books-client App', () => {
+describe('medi-care-client App', () => {
   let page: AppPage;
 
   beforeEach(() => {
