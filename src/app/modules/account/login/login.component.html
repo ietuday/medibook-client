@@ -26,8 +26,11 @@
           <br>
           <div>
 
-            <button mat-button mat-raised-button  matTooltip="Login" matTooltipPosition="below" color="accent" (click)="onLogin()" fxFlex>Login</button>
+            <button color="primary" mat-button mat-raised-button matTooltip="Login" matTooltipPosition="below" (click)="onLogin()" fxFlex>Login</button>
           </div>
+
+            <p class="note">Create an Account on Medi-Care</p>
+             <a [routerLink]="['/register']">Sign Up here</a>
         </form>
       </div>
     </div>
