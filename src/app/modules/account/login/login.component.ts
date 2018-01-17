@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../../../core/models/login.modal';
+import { Login } from '../../../core/models/login.model';
 import { Router } from '@angular/router';
 
 import swal from 'sweetalert2'
