@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {fadeInAnimation} from '../../../route.animation';
 import {Router} from '@angular/router';
-
+import { EndpointService } from '../../../core/config/api.config' ;
+import { ApiService, ApiParam } from '../../../core/services/api.service';
+import { Register } from '../../../core/models/register.model';
 @Component({
   selector: 'ms-register',
   templateUrl: './register.component.html',
@@ -12,21 +14,30 @@ import {Router} from '@angular/router';
   animations: [ fadeInAnimation ]
 })
 export class RegisterComponent implements OnInit {
-
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
+  registerformData : Register = new Register();
 
   constructor(
-    private router: Router
+    private router: Router,
+    private endpointService: EndpointService,
+    private api:ApiService
   ) { }
 
   ngOnInit() {
   }
 
   register() {
-    this.router.navigate(['/']);
+    const apiParams = {
+      data: {
+          'data' : this.registerformData
+      }
+    };
+
+    this.api
+    .request('REGISTER',apiParams)
+    .subscribe(res =>{
+      console.log("Register Successfully",res)
+    });
+    // this.router.navigate(['/']);
   }
 
 }
