@@ -55,7 +55,7 @@ export class EndpointService {
       { name: 'LOGIN', url: '/v1/auth/login', method: 'POST' },
 
       /**Register**/
-      {name:'REGISTER', url:'/v1/auth/register',method:'POST'}
+      {name:'REGISTER', url:'/signup',method:'POST'}
 
     ];
   }

@@ -25,7 +25,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  register() {
+  register(value) {
+    console.log("Form Value",value);
+    console.log("Register Data",this.registerformData);
     const apiParams = {
       data: {
           'data' : this.registerformData
