@@ -3,19 +3,26 @@
     <div class="register-header" fxLayout="column" fxLayoutAlign="center center">
       <img src="assets/icon.png">
     </div>
-    <form #form="ngForm" (ngSubmit)="register(form.value)">
+    <form  [formGroup]="form" (ngSubmit)="register()">
       <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">
         <mat-input-container>
-          <input matInput placeholder="Name" type="text" name="name" required [(ngModel)]="registerformData.name">
+          <input matInput placeholder="Name" formControlName="name" type="text" name="name" required [(ngModel)]="registerformData.name">
         </mat-input-container>
         <mat-input-container>
-          <input matInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="registerformData.email">
+          <mat-select placeholder="User Type" formControlName="userType">
+            <mat-option *ngFor="let userType of userTypes"  [value]="userType.value">
+              {{ userType.viewValue }}
+            </mat-option>
+          </mat-select>
         </mat-input-container>
         <mat-input-container>
-          <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="registerformData.password">
+          <input matInput placeholder="E-Mail" formControlName="email" type="text" name="email" required [(ngModel)]="registerformData.email">
         </mat-input-container>
         <mat-input-container>
-          <input matInput placeholder="Password (Confirm)" type="password" name="password-confirm" required [(ngModel)]="registerformData.passwordConfirm">
+          <input matInput placeholder="Password" formControlName="password" type="password" name="password" required [(ngModel)]="registerformData.password">
+        </mat-input-container>
+        <mat-input-container>
+          <input matInput placeholder="Password (Confirm)" formControlName="passwordConfirm" type="password" name="password-confirm" required [(ngModel)]="registerformData.passwordConfirm">
         </mat-input-container>
         <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
           <mat-checkbox class="remember-me">I accept the <a href="#">terms and conditions.</a></mat-checkbox>

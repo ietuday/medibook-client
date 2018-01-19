@@ -10,7 +10,6 @@ import { TopnavComponent } from './components/topnav/topnav.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoadingBarComponent } from './components/loading-bar/loading-bar.component';
-
 import { LoadingBarService, LoadingInterceptor } from './components/loading-bar/loading-bar.service';
 import { ApiService } from './services/api.service';
 import { ExceptionService } from './services/exception.service';
