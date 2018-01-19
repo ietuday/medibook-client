@@ -52,10 +52,10 @@ export class EndpointService {
 
     this.endpoints = [
       /**Login**/
-      { name: 'LOGIN', url: '/v1/auth/login', method: 'POST' },
+      { name: 'LOGIN', url: '/login', method: 'POST' },
 
       /**Register**/
-      {name:'REGISTER', url:'/signup',method:'POST'}
+      {name:'REGISTER', url:'/signup', method:'POST'}
 
     ];
   }
