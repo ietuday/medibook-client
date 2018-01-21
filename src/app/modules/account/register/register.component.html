@@ -7,7 +7,8 @@
       <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">
         <mat-input-container>
           <input matInput placeholder="Name" formControlName="name" type="text" name="name" required>
-          <mat-error *ngIf="form.controls['name'].invalid">{{getErrorMessage('name')}}</mat-error>
+          <!-- <mat-error *ngIf="form.controls['name'].invalid">{{getErrorMessage('name')}}</mat-error> -->
+          <mat-error *ngIf="form.controls['name'].hasError('required')">You must enter your name</mat-error>
         </mat-input-container>
         <mat-input-container>
           <mat-select placeholder="User Type*" formControlName="userType">
@@ -15,22 +16,25 @@
               {{ userType.viewValue }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="form.controls['userType'].invalid">{{getErrorMessage('userType')}}</mat-error>
+          <mat-error *ngIf="form.controls['userType'].hasError('required')">Please select your userType</mat-error>
           <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
         </mat-input-container>
         <mat-input-container>
           <input matInput placeholder="E-Mail" formControlName="email" type="text" name="email" required>
-          <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+          <mat-error *ngIf="form.controls['email'].hasError('required')">Please enter your email</mat-error>
+          <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">Please enter valid a email Id</mat-error>
         </mat-input-container>
         <mat-input-container hintLabel="Min 4 characters">
           <input matInput #password placeholder="Password" formControlName="password" type="password" name="password" required>
           <mat-hint align="end">{{password.value?.length || 0}}/4</mat-hint>
-          <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
-
+          <mat-error *ngIf="form.controls['password'].hasError('required')">Enter your password</mat-error>
+          <mat-error *ngIf="form.controls['password'].hasError('minLength')">Enter your password atleast 4 chracter</mat-error>
         </mat-input-container>
         <mat-input-container>
           <input matInput placeholder="Password (Confirm)" formControlName="passwordConfirm" type="password" name="password-confirm" required>
-          <mat-error *ngIf="form.controls['passwordConfirm'].invalid">{{getErrorMessage('email')}}</mat-error>
+          <mat-error *ngIf="form.controls['passwordConfirm'].hasError('required')">Please confirm your password</mat-error>
+          <mat-error *ngIf="form.controls['passwordConfirm'].hasError('matchOtherValidator')">Confirm password doesnot match with password</mat-error>
+
 
         </mat-input-container>
         <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
