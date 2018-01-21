@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { Login } from '../../../core/models/login.model';
 import { Router } from '@angular/router';
 import { EndpointService } from '../../../core/config/api.config' ;
@@ -11,6 +12,7 @@ import swal from 'sweetalert2'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  form:FormGroup
   loginFormData : Login = new Login();
 
   constructor(private router : Router, private endpointService: EndpointService, private api:ApiService) {
@@ -18,27 +20,39 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.form = new FormGroup({
+    email: new FormControl('', [Validators.required,Validators.email]),
+    password: new FormControl('', Validators.required)
+  });
   }
 
 
   onLogin(){
     const apiParams = {
       data: {
-            'data':this.loginFormData
+            'data':this.form.value
       }
     };
     this.api
       .request('LOGIN',apiParams)
       .subscribe(res => {
-              console.log("Successfully Logged In")
-      });
-    swal({
-        position: 'center',
-        type: 'success',
-        title: 'Successfully Logged In',
-        showConfirmButton: false,
-        timer: 1000
-      })
-      // this.router.navigate(['/']);
+        console.log(res);
+            if(res.status){
+              swal({
+                title: 'Good job!',
+                text:'You have successfully looged In.!',
+                type:'success'
+              }).then(function () {
+                //Navigate to dashboard
+                // this.router.navigate(['/'])
+              })
+            }else{
+              swal({
+                title: 'Oops...',
+                text: res.error,
+                type: 'error'
+              })
+            }
+          });
   }
 }

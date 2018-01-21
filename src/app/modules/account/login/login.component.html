@@ -7,15 +7,15 @@
           Medicare
       </div>
       <div class="login-content">
-        <!-- <form> -->
+        <form [formGroup]="form" (ngSubmit)="onLogin()">
           <div>
             <mat-form-field fxFlex>
-              <input matInput placeholder="Email" type="email" [(ngModel)]="loginFormData.email">
+              <input matInput placeholder="Email" type="email" formControlName="email">
             </mat-form-field>
           </div>
           <div>
             <mat-form-field fxFlex>
-              <input matInput placeholder="Password" type="password" [(ngModel)]="loginFormData.password">
+              <input matInput placeholder="Password" type="password" formControlName="password">
             </mat-form-field>
           </div>
           <br>
@@ -26,12 +26,12 @@
           <br>
           <div>
 
-            <button color="primary" mat-button mat-raised-button matTooltip="Login" matTooltipPosition="below" (click)="onLogin()" fxFlex>Login</button>
+            <button color="primary" mat-button mat-raised-button matTooltip="Login" matTooltipPosition="below" [disabled]="!form.valid" fxFlex>Login</button>
           </div>
 
             <p class="note">Create an Account on Medi-Care</p>
              <a [routerLink]="['/register']">Sign Up here</a>
-        <!-- </form> -->
+        </form>
       </div>
     </div>
   </div>

@@ -6,6 +6,8 @@ import { EndpointService } from '../../../core/config/api.config' ;
 import { ApiService, ApiParam } from '../../../core/services/api.service';
 import { Register } from '../../../core/models/register.model';
 import { matchOtherValidator } from '../../../core/custom-validation/equal-validator.directive';
+import swal from 'sweetalert2'
+
 @Component({
   selector: 'ms-register',
   templateUrl: './register.component.html',
@@ -34,9 +36,35 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', Validators.required),
       userType: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required,Validators.email]),
-      password: new FormControl('', Validators.required),
-      passwordConfirm: new FormControl('', [Validators.required,matchOtherValidator('password')]),
+      password: new FormControl('', [Validators.required,Validators.minLength(4)]),
+      passwordConfirm: new FormControl('', [Validators.required,Validators.minLength(4),matchOtherValidator('password')]),
     });
+  }
+
+  getErrorMessage(value){
+    console.log("Form Value",this.form.value);
+    console.log("Entered Input",value);
+      switch(value){
+
+        case "name":
+            return this.form.controls['name'].hasError('required') ? 'You must enter your name' : '';
+        case "userType":
+               return this.form.controls['userType'].hasError('required') ? 'User Type cannot be empty' : '';
+        case "email":
+          return this.form.controls['email'].hasError('required') ? 'You must enter a value' :
+          this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+
+        case "password":
+        return this.form.controls['password'].hasError('required') ? 'You must enter a password' :
+        this.form.controls['email'].hasError('minLength') ? 'Password must have 4 character length' : '';
+
+        case "passwordConfirm":
+        return this.form.controls['passwordConfirm'].hasError('required') ? 'You must enter a password' :
+        this.form.controls['passwordConfirm'].hasError('matchOtherValidator') ? 'Confirm Password does not match with Password' : '';
+
+        default:
+            console.log("Something error")
+      }
   }
 
   register() {
@@ -49,9 +77,22 @@ export class RegisterComponent implements OnInit {
     this.api
     .request('REGISTER',apiParams)
     .subscribe(res =>{
-      console.log("Register Successfully",res)
+      if(res.status){
+        console.log("Response status true",res);
+        swal({
+          title: 'Congrats',
+          text:'You have successfully Registered into Medicare',
+          type:'success'
+        }).then(function () {
+          //Navigate to dashboard
+          // this.router.navigate(['/'])
+        })
+      } else if(!res.status){
+        console.log("Response status false",res);
+      }else{
+        console.log("Something went wrong");
+      }
     });
-    this.router.navigate(['/']);
   }
 
 }
