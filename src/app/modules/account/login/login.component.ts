@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       .request('LOGIN',apiParams)
       .subscribe(res => {
         console.log(res);
+        debugger;
             if(res.status){
               swal({
                 title: 'Good job!',
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
                 type:'success'
               }).then(function () {
                 //Navigate to dashboard
-                // this.router.navigate(['/'])
+                this.router.navigate(['/'])
               })
             }else{
               swal({

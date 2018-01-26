@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { AppStorage } from './app-storage.service';
+import 'rxjs/add/observable/of';
 
 /**
  * @class ExceptionService
@@ -33,19 +34,20 @@ export class ExceptionService {
    */
   catchBadResponse: (errorResponse: any) => Observable<any> = (errorResponse: any) => {
     const res = <Response>errorResponse;
+    console.log("res",res);
     const err = res ? res.json() : '';
-    const emsg = err ?
+    const emsg = err.msg ?
       (err.result ? err.result.message : JSON.stringify(err)) :
       (res.statusText || 'unknown error');
-
+    console.log("emsg",emsg.msg);
     this.snackBar.open(`Error - ${emsg}`, '', {
       duration: 10000
     });
     this.handleStatusCode(res.status);
     // this.toastService.activate(`Error - Bad Response - ${emsg}`);
     Observable.throw(emsg); // TODO: We should NOT swallow error here.
-    // return Observable.of();
-    return null;
+    return Observable.of(emsg);
+    // return null;
   }
 
   private handleStatusCode(statusCode: number): void {

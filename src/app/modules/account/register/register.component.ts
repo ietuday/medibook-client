@@ -84,8 +84,8 @@ export class RegisterComponent implements OnInit {
           text:'You have successfully Registered into Medicare',
           type:'success'
         }).then(function () {
-          //Navigate to dashboard
-          // this.router.navigate(['/'])
+          // Navigate to dashboard
+          this.router.navigate(['/'])
         })
       } else if(!res.status){
         console.log("Response status false",res);
