@@ -41,9 +41,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+
   getErrorMessage(value){
-    console.log("Form Value",this.form.value);
-    console.log("Entered Input",value);
       switch(value){
 
         case "name":
@@ -68,31 +67,36 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.registerformData.userType = this.form.value.userType;
     const apiParams = {
       data: {
-          'data' : this.registerformData
+          'data' : this.form.value
       }
     };
     this.api
     .request('REGISTER',apiParams)
     .subscribe(res =>{
+      let that = this;
       if(res.status){
-        console.log("Response status true",res);
         swal({
           title: 'Congrats',
           text:'You have successfully Registered into Medicare',
           type:'success'
         }).then(function () {
-          // Navigate to dashboard
-          this.router.navigate(['/'])
+            that.router.navigate(['/']);
         })
       } else if(!res.status){
-        console.log("Response status false",res);
+        swal({
+          title: 'Oops...',
+          text: res.errors,
+          type: 'error'
+        })
       }else{
-        console.log("Something went wrong");
+        swal({
+          title: 'Oops...',
+          text: 'something went wrong',
+          type: 'error'
+        })
       }
     });
   }
-
 }

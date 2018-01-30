@@ -34,12 +34,10 @@ export class ExceptionService {
    */
   catchBadResponse: (errorResponse: any) => Observable<any> = (errorResponse: any) => {
     const res = <Response>errorResponse;
-    console.log("res",res);
     const err = res ? res.json() : '';
     const emsg = err.msg ?
       (err.result ? err.result.message : JSON.stringify(err)) :
       (res.statusText || 'unknown error');
-    console.log("emsg",emsg.msg);
     this.snackBar.open(`Error - ${emsg}`, '', {
       duration: 10000
     });
@@ -60,6 +58,5 @@ export class ExceptionService {
         this.router.navigate(['/login']);
         break;
     }
-
   }
 }

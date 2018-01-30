@@ -33,24 +33,23 @@ export class LoginComponent implements OnInit {
             'data':this.form.value
       }
     };
+
     this.api
       .request('LOGIN',apiParams)
       .subscribe(res => {
-        console.log(res);
-        debugger;
+        let that = this;
             if(res.status){
               swal({
                 title: 'Good job!',
                 text:'You have successfully looged In.!',
                 type:'success'
               }).then(function () {
-                //Navigate to dashboard
-                this.router.navigate(['/'])
-              })
+                  that.router.navigate(['/']);
+                })
             }else{
               swal({
                 title: 'Oops...',
-                text: res.error,
+                text: res.errors,
                 type: 'error'
               })
             }
